@@ -3,6 +3,7 @@ import discord
 import Mail
 import random
 import time
+import os
 
 TOKEN = os.getenv('TOKEN_DISCORD_GANDALF')
 
