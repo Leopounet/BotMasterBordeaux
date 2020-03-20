@@ -4,7 +4,7 @@ import Mail
 import random
 import time
 
-TOKEN = 'NjkwNjIzMzU5MTkyNjYyMDk2.XnUJeg.UgNrtpF5Vrs6HLhs4wLcumBEWYc'
+TOKEN = os.getenv('TOKEN_DISCORD_GANDALF')
 
 client = discord.Client()
 
@@ -153,7 +153,7 @@ async def on_message(message):
             await message.channel.send('Role attribué!')
         else:
             await message.channel.send('Code invalide ou expiré.')
-            
+
     if message.content.startswith('$help'):
         print("kk")
         msg = await helpMessage(False)

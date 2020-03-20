@@ -2,7 +2,7 @@ import smtplib
 import os
 
 gmail_user = 'verifmasterbordeaux@gmail.com'
-gmail_password = os.getenv('GANDALF_PASSWORD')# None #
+gmail_password = os.getenv('GANDALF_PASSWORD')
 
 async def sendMail(to, code):
     sent_from = gmail_user
