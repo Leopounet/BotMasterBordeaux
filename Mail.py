@@ -1,11 +1,21 @@
 import smtplib
 import os
 
-gmail_user = 'verifmasterbordeaux@gmail.com'
-gmail_password = os.getenv('GANDALF_PASSWORD')
+################################################################################
+################################ VARIABLES #####################################
+################################################################################
+
+SENDER = 'verifmasterbordeaux@gmail.com'
+PASSWORD = os.getenv('GANDALF_PASSWORD')
+SMTP_ADDRESS = 'smtp.gmail.com'
+SMTP_CODE = 465
+
+################################################################################
+################################ METHODS #######################################
+################################################################################
 
 async def sendMail(to, code):
-    sent_from = gmail_user
+    sent_from = SENDER
     to = [to]
     subject = 'Verification serveur discord Master 1 de Bordeaux'
     # body = 'Hey, what's up?\n\n- You
@@ -18,9 +28,9 @@ async def sendMail(to, code):
     email_text = "From: %s\nTo: %s\nSubject: %s\n\n%s" % (sent_from, ", ".join(to), subject, body)
 
     try:
-        server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+        server = smtplib.SMTP_SSL(SMTP_ADDRESS, SMTP_CODE)
         server.ehlo()
-        server.login(gmail_user, gmail_password)
+        server.login(SENDER, PASSWORD)
         server.sendmail(sent_from, to, email_text)
         server.close()
 
@@ -29,4 +39,19 @@ async def sendMail(to, code):
     except Exception as e:
         print(e)
         print ('Something went wrong...')
+    return False
+
+async def valid_extension(mail, extensions):
+    # extensionProf = '@etu.u-bordeaux.fr'
+    # extension = '@u-bordeaux.fr'
+
+    # parsing all the valid extensions
+    for extension in extensions:
+
+        # Get the index at which the extension should start
+        index = len(mail) - len(extension)
+
+        # Check if the extension is indeed valid
+        if extension == mail[index:(index+len(extension))]:
+            return True
     return False
