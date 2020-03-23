@@ -161,7 +161,7 @@ async def register_method(msg, author):
         await pending_user_list.add(author)
         await help_method(None, author)
         await author.send("Vous devez à présent utiliser la commande mail pour recevoir un mail contenant un code secret. Pour ce faire vous pouvez utiliser la commande $mail. Utilisez `$help mail` pour en savoir plus.")
-        await author.send("Une fosi que vous aurez le code, renvoyez le au bot avec la commande $codecheck. Pour plus d'info utilisez la command `$help codecheck`.")
+        await author.send("Une fosi que vous aurez le code, renvoyez le au bot avec la commande $checkcode. Pour plus d'info utilisez la command `$help codecheck`.")
     except Exception as e:
         # print(e)
         await author.send("Vous devez être dans un channel de serveur pour utiliser cette commande.")
